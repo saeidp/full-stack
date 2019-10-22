@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import { HR } from "./components/HR";
 import { userInfo } from "os";
-import { Headline } from "./Headline";
+import { Greet } from "./components/Greet";
+
 // -------------first app---------------
 // function App() {
 //   const name = "Shahriar";
@@ -128,15 +130,62 @@ import { Headline } from "./Headline";
 // }
 
 //---------------get image url: props-----------
-function App() {
-  const person = {
-    name: "Shahrar",
-    age: 25,
-    url:
-      "https://shahmanmastery.com/wp-content/uploads/2019/10/home-shahlaptop.png"
-  };
+// // headline in another file (Headline.jsx)
+// function App() {
+//   const person = {
+//     name: "Shahrar",
+//     age: 25,
+//     url:
+//       "https://shahmanmastery.com/wp-content/uploads/2019/10/home-shahlaptop.png"
+//   };
 
-  return <Headline value={person} />;
-}
+//   return <Headline value={person} />;
+// }
+
+// -------------dummy-------------------
+// function App() {
+//   const people = [
+//     {
+//       name: "shahriar",
+//       age: 25
+//     },
+//     {
+//       name: "saeid",
+//       age: 54
+//     }
+//   ];
+
+//   return <HR value={people} />;
+// }
+
+//-------------arrow function-------------
+// const App = () => {
+//   const greeting = "Hello Function Component!";
+
+//   return <Headline value={greeting} />;
+// };
+
+// const Headline = ({ value }) => {
+//   return <h1>{value}</h1>;
+// };
+
+//------------react state, hook, greeting-----------
+const App = () => {
+  return <Headline />;
+};
+
+const Headline = () => {
+  const [greeting, setGreeting] = useState("Hello Function Component!");
+  const handleChange = e => {
+    setGreeting(e.target.value);
+  };
+  return (
+    <div className="App-header">
+      <h1>{greeting}</h1>
+
+      <input type="text" value={greeting} onChange={handleChange} />
+    </div>
+  );
+};
 
 export default App;
