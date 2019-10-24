@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { HR } from "./components/HR";
 import { userInfo } from "os";
@@ -292,15 +292,137 @@ import { Greet } from "./components/Greet";
 // };
 
 //-----------------default (es6 method)----------------
-import React from "react";
-const App = () => {
-  const sayHello = () => console.log("Hello");
-  return <Button handleClick={sayHello} />;
-};
-const Button = ({ handleClick = () => console.log("Default") }) => (
-  <button type="button" onClick={handleClick}>
-    Button
-  </button>
-);
+// import React from "react";
+// const App = () => {
+//   const sayHello = () => console.log("Hello");
+//   return <Button handleClick={sayHello} />;
+// };
+// const Button = ({ handleClick = () => console.log("Default") }) => (
+//   <button type="button" onClick={handleClick}>
+//     Button
+//   </button>
+// );
+
+//--------------async---------------------
+
+// const App = () => {
+//   const sayHello = () => setTimeout(() => console.log("Hello"), 3000);
+//   return <Button handleClick={sayHello} />;
+// };
+// const Button = ({ handleClick }) => (
+//   <button type="button" onClick={handleClick}>
+//     Button
+//   </button>
+// );
+
+// -------------async function in component----------------
+// const App = () => {
+//   const [count, setCount] = useState(0);
+
+//   const handleIncrement = () =>
+//     setTimeout(() => setCount(count => currentCount + 1), 1000);
+
+//   const handleDecrement = () =>
+//     setTimeout(() => setCount(currentCount => currentCount - 1), 1000);
+
+//   // doesn't work, time is off
+//   // const handleIncrement = () => setTimeout(() => setCount(count + 1), 1000);
+
+//   // const handleDecrement = () => setTimeout(() => setCount(count - 1), 1000);
+
+//   return (
+//     <div className="App-header">
+//       <h1>{count}</h1>
+
+//       <Button handleClick={handleIncrement}>Increment</Button>
+//       <Button handleClick={handleDecrement}>Decrement</Button>
+//     </div>
+//   );
+// };
+
+// const Button = ({ handleClick, children }) => (
+//   <button type="button" onClick={handleClick}>
+//     {children}
+//   </button>
+// );
+
+//---------------mount use-effect ----------------------
+// method runs once on load (render for the first time)
+
+// const App = () => {
+//   const [count, setCount] = useState(0);
+//   const handleIncrement = () => setCount(currentCount => currentCount + 1);
+//   const handleDecrement = () => setCount(currentCount => currentCount - 1);
+//   useEffect(() => setCount(currentCount => currentCount + 1), []);
+//   return (
+//     <div className="App-header">
+//       <h1>{count}</h1>
+//       <button type="button" onClick={handleIncrement}>
+//         Increment
+//       </button>
+//       <button type="button" onClick={handleDecrement}>
+//         Decrement
+//       </button>
+//     </div>
+//   );
+// };
+
+//---------------mount use-effect (alternate) ----------------------
+// method runs once on load (render for the first time)
+
+// const App = () => {
+//   const [count, setCount] = useState(0);
+//   const handleIncrement = () => setCount(currentCount => currentCount + 1);
+//   const handleDecrement = () => setCount(currentCount => currentCount - 1);
+//   useEffect(() => {
+//     const setState = () => {
+//       setCount(currentCount => currentCount + 1);
+//     };
+//     setState();
+//   }, []);
+//   return (
+//     <div className="App-header">
+//       <h1>{count}</h1>
+//       <button type="button" onClick={handleIncrement}>
+//         Increment
+//       </button>
+//       <button type="button" onClick={handleDecrement}>
+//         Decrement
+//       </button>
+//     </div>
+//   );
+// };
+
+//---------------mount use-effect (alternate2) ----------------------
+// method runs once on load (render for the first time)
+// if you run, everytime state changes, page gets rendered, state useEffect
+// runs again, and changes state once again. Infinite loop.
+
+// const App = () => {
+//   const [count, setCount] = useState(0);
+//   const handleIncrement = () => setCount(currentCount => currentCount + 1);
+//   const handleDecrement = () => setCount(currentCount => currentCount - 1);
+//   useEffect(() => {
+//     const setState = () => {
+//       setCount(currentCount => currentCount + 1);
+//     };
+//     setState();
+//   });
+//   return (
+//     <div className="App-header">
+//       <h1>{count}</h1>
+//       <button type="button" onClick={handleIncrement}>
+//         Increment
+//       </button>
+//       <button type="button" onClick={handleDecrement}>
+//         Decrement
+//       </button>
+//     </div>
+//   );
+// };
 
 export default App;
+
+// in const App create a person object and create state
+// with defalt shariar and 25 age. create useeffect that in
+// the first render add 10 to the age 35 age
