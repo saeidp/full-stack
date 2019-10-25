@@ -421,8 +421,76 @@ import { Greet } from "./components/Greet";
 //   );
 // };
 
-export default App;
-
+//---------------------exercise-----------------
 // in const App create a person object and create state
 // with defalt shariar and 25 age. create useeffect that in
 // the first render add 10 to the age 35 age
+
+// const App = () => {
+//   const [person, setPerson] = useState({ name: "shahriar", age: 25 });
+//   useEffect(() => {
+//     setPerson(p => {
+//       const newPerson = {
+//         name: p.name,
+//         age: (p.age += 10)
+//       };
+//       return newPerson;
+//     });
+//   }, []);
+//   return (
+//     <div className="App-header">
+//       <h1>{`${person.name} is ${person.age} years' old.`}</h1>
+//     </div>
+//   );
+// };
+
+//-----------------update-local storage (cache) ---------------------
+
+// const App = () => {
+//   const initialCount = localStorage.getItem("storageCount") || 0;
+//   const [count, setCount] = useState(initialCount);
+//   const handleIncrement = () => setCount(currentCount => currentCount + 1);
+//   const handleDecrement = () => setCount(currentCount => currentCount - 1);
+//   useEffect(() => localStorage.setItem("storageCount", count));
+//   return (
+//     <div>
+//       <h1>{count}</h1>
+//       <button type="button" onClick={handleIncrement}>
+//         Increment
+//       </button>
+//       <button type="button" onClick={handleDecrement}>
+//         Decrement
+//       </button>
+//     </div>
+//   );
+// };
+
+//-------------------exercise---------------------
+// sessionstorage: until tab is closed
+// localstorage: stores in local browser cache
+
+const App = () => {
+  // const initialName = localStorage.getItem("storageName") || "default";
+  const initialName = sessionStorage.getItem("storageName") || "default";
+  const [name, setName] = useState(initialName);
+  useEffect(() => {
+    // localStorage.setItem("storageName", name);
+    sessionStorage.setItem("storageName", name);
+  });
+
+  // function handleNameChange(e) {
+  //   setName(e.target.value);
+  // };
+
+  const handleNameChange = e => {
+    setName(e.target.value);
+  };
+
+  return (
+    <div className="App-header">
+      <h1>{name}</h1>
+      <input type="text" onChange={handleNameChange} placeholder="name"></input>
+    </div>
+  );
+};
+export default App;
