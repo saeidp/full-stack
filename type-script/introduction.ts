@@ -1,9 +1,10 @@
+export {};
 //--------------type initialisation-----------------
-const x: number = 10;
-const y: number = 4;
-const z: number = x + y;
+// const x: number = 10;
+// const y: number = 4;
+// const z: number = x + y;
 
-console.log(z);
+// console.log(z);
 //------------different array type definitions----------------
 // const arr: string[] = [];
 // const arr2 = new Array<string>();
@@ -44,3 +45,10 @@ class Person implements IPerson {
 
 const person = new Person("shahriar", 25);
 console.log(person);
+
+function print(Person: IPerson) {
+  console.log(`${Person.age}`);
+}
+
+print(person);
+
