@@ -465,32 +465,65 @@ import { Greet } from "./components/Greet";
 //   );
 // };
 
-//-------------------exercise---------------------
-// sessionstorage: until tab is closed
-// localstorage: stores in local browser cache
+// //-------------------exercise---------------------
+// // sessionstorage: until tab is closed
+// // localstorage: stores in local browser cache
+
+// const App = () => {
+//   // const initialName = localStorage.getItem("storageName") || "default";
+//   const initialName = sessionStorage.getItem("storageName") || "default";
+//   const [name, setName] = useState(initialName);
+//   useEffect(() => {
+//     // localStorage.setItem("storageName", name);
+//     sessionStorage.setItem("storageName", name);
+//   });
+
+//   // function handleNameChange(e) {
+//   //   setName(e.target.value);
+//   // };
+
+//   const handleNameChange = e => {
+//     setName(e.target.value);
+//   };
+
+//   return (
+//     <div className="App-header">
+//       <h1>{name}</h1>
+//       <input type="text" onChange={handleNameChange} placeholder="name"></input>
+//     </div>
+//   );
+// };
+// export default App;
+
+//------------memo---------------
+// The Count component doesn't update anymore when
+// user types something into the input field. Only
+// the App component rerenders. this is because of greeting state change
+// if using memo then the only time Count component renders is when count
+// state changes
+// const Count = memo(({ count }) =>
 
 const App = () => {
-  // const initialName = localStorage.getItem("storageName") || "default";
-  const initialName = sessionStorage.getItem("storageName") || "default";
-  const [name, setName] = useState(initialName);
-  useEffect(() => {
-    // localStorage.setItem("storageName", name);
-    sessionStorage.setItem("storageName", name);
-  });
-
-  // function handleNameChange(e) {
-  //   setName(e.target.value);
-  // };
-
-  const handleNameChange = e => {
-    setName(e.target.value);
-  };
-
+  const [greeting, setGreeting] = useState("Hello React!");
+  const [count, setCount] = useState(0);
+  const handleIncrement = () => setCount(currentCount => currentCount + 1);
+  const handleDecrement = () => setCount(currentCount => currentCount - 1);
+  const handleChange = event => setGreeting(event.target.value);
   return (
-    <div className="App-header">
-      <h1>{name}</h1>
-      <input type="text" onChange={handleNameChange} placeholder="name"></input>
+    <div>
+      <input type="text" onChange={handleChange} />
+      <Count count={count} />
+      <button type="button" onClick={handleIncrement}>
+        Increment
+      </button>
+      <button type="button" onClick={handleDecrement}>
+        Decrement
+      </button>
     </div>
   );
 };
+const Count = memo(({ count }) => {
+  console.log("Does it (re)render?");
+  return <h1>{count}</h1>;
+});
 export default App;
