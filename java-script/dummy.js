@@ -520,21 +520,58 @@
 // console.log(sum(...arr));
 
 // ----------------
-class Person {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-  }
-  print() {
-    console.log(`${this.name} is ${this.age} years' old.`);
-  }
-  static createPerson(name, age) {
-    return new Person(name, age);
-  }
-}
+// class Person {
+//   constructor(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+//   print() {
+//     console.log(`${this.name} is ${this.age} years' old.`);
+//   }
+//   static createPerson(name, age) {
+//     return new Person(name, age);
+//   }
+// }
 
-// const p = new Person("shahriar", 25);
+// // const p = new Person("shahriar", 25);
+// // p.print();
+
+// const p = Person.createPerson("shahriar", 25);
 // p.print();
 
-const p = Person.createPerson("shahriar", 25);
-p.print();
+//------------hoisting----------------
+// console.log(i);
+// var i = 10;
+// // undefined
+// // can't use var i before being defined.
+
+// print();
+// function print() {
+//   console.log("hello world");
+// }
+// // hello world
+// // normal functions are defined first before execution happens.
+
+// print();
+// const print = function() {
+//   console.log("hello world");
+// };
+// //undefined
+// // can't call function expression since it has an assignment.
+
+//--------------call back function----------------
+
+const calc = function(n, func) {
+  return func(n);
+};
+
+const power = function(n) {
+  return n * n;
+};
+console.log(calc(10, power));
+
+// Short Cut
+const result = calc(10, n => {
+  return n * n;
+});
+console.log(result);
