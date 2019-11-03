@@ -1,6 +1,6 @@
 export interface IWeatherDto {
   date: string;
-  tempC: number;
-  tempF: number;
+  temperatureC: number;
+  temperatureF: number;
   summary: string;
 }
