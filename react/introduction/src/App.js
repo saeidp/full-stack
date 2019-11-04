@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import "./App.css";
 import { HR } from "./components/HR";
 import { userInfo } from "os";
@@ -503,27 +503,63 @@ import { Greet } from "./components/Greet";
 // state changes
 // const Count = memo(({ count }) =>
 
+// const App = () => {
+//   const [greeting, setGreeting] = useState("Hello React!");
+//   const [count, setCount] = useState(0);
+//   const handleIncrement = () => setCount(currentCount => currentCount + 1);
+//   const handleDecrement = () => setCount(currentCount => currentCount - 1);
+//   const handleChange = event => setGreeting(event.target.value);
+//   return (
+//     <div>
+//       <input type="text" onChange={handleChange} />
+//       <Count count={count} />
+//       <button type="button" onClick={handleIncrement}>
+//         Increment
+//       </button>
+//       <button type="button" onClick={handleDecrement}>
+//         Decrement
+//       </button>
+//     </div>
+//   );
+// };
+// const Count = memo(({ count }) => {
+//   console.log("Does it (re)render?");
+//   return <h1>{count}</h1>;
+// });
+// export default App;
+
+// ----------------ref----------------
+// If you have to use a Ref in a Function Component,
+// you can define it within the component. In the following
+// case, the input field will get focused after the component
+// did mount:
+
 const App = () => {
-  const [greeting, setGreeting] = useState("Hello React!");
-  const [count, setCount] = useState(0);
-  const handleIncrement = () => setCount(currentCount => currentCount + 1);
-  const handleDecrement = () => setCount(currentCount => currentCount - 1);
-  const handleChange = event => setGreeting(event.target.value);
+  const [greeting, setGreeting] = useState("Hello Shahriar!");
+
+  const handleChange = e => setGreeting(e.target.value);
+
   return (
     <div>
-      <input type="text" onChange={handleChange} />
-      <Count count={count} />
-      <button type="button" onClick={handleIncrement}>
-        Increment
-      </button>
-      <button type="button" onClick={handleDecrement}>
-        Decrement
-      </button>
+      <h1>{greeting}</h1>
+      <Input value={greeting} handleChange={handleChange} />
     </div>
   );
 };
-const Count = memo(({ count }) => {
-  console.log("Does it (re)render?");
-  return <h1>{count}</h1>;
-});
+
+const Input = ({ value, handleChange }) => {
+  const ref = createRef();
+
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
+  return (
+    <div className="App-header">
+      <input type="text" placeholder="Not Focused" />
+      <input type="text" value={value} onChange={handleChange} ref={ref} />
+    </div>
+  );
+};
+
 export default App;
