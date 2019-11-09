@@ -534,30 +534,99 @@ import { Greet } from "./components/Greet";
 // case, the input field will get focused after the component
 // did mount:
 
+// const App = () => {
+//   const [greeting, setGreeting] = useState("Hello Shahriar!");
+
+//   const handleChange = e => setGreeting(e.target.value);
+
+//   return (
+//     <div>
+//       <h1>{greeting}</h1>
+//       <Input value={greeting} handleChange={handleChange} />
+//     </div>
+//   );
+// };
+
+// const Input = ({ value, handleChange }) => {
+//   const ref = createRef();
+
+//   useEffect(() => {
+//     ref.current.focus();
+//   }, []);
+
+//   return (
+//     <div className="App-header">
+//       <input type="text" placeholder="Not Focused" />
+//       <input type="text" value={value} onChange={handleChange} ref={ref} />
+//     </div>
+//   );
+// };
+
+// ----------------name and age exercise---------------
+// Adding to People Array.
+
 const App = () => {
-  const [greeting, setGreeting] = useState("Hello Shahriar!");
-
-  const handleChange = e => setGreeting(e.target.value);
-
-  return (
-    <div>
-      <h1>{greeting}</h1>
-      <Input value={greeting} handleChange={handleChange} />
-    </div>
-  );
+  return <Form value={{ initName: "shahriar", initAge: 25 }} />;
 };
 
-const Input = ({ value, handleChange }) => {
-  const ref = createRef();
+const Form = props => {
+  const { initName, initAge } = props.value;
+  const [people, setPeople] = useState([{ name: initName, age: initAge }]);
+  const [name, setName] = useState("");
+  const [age, setAge] = useState();
+  const handleClick = () => {
+    let person = {
+      name: name,
+      age: age
+    };
+    // Spread Method
+    setPeople([...people, person]);
 
-  useEffect(() => {
-    ref.current.focus();
-  }, []);
+    // ForEach Method
+    // let items = [];
+    // people.forEach(person => items.push(person));
+    // items.push(person);
+    // setPeople(items);
 
+    // For Of Method
+    //   let items = [];
+    //   for (let p of people) {
+    //     items.push(p);
+    //   }
+    //   items.push(person);
+    //   setPeople(items);
+    //
+  };
+  const handleChangeName = e => {
+    setName(e.target.value);
+  };
+  const handleChangeAge = e => {
+    setAge(e.target.value);
+  };
+
+  // people = setPeople([...people.push(person)]);
   return (
     <div className="App-header">
-      <input type="text" placeholder="Not Focused" />
-      <input type="text" value={value} onChange={handleChange} ref={ref} />
+      <div style={{ textAlign: "left" }}>
+        {people.map(person => (
+          <li>{`${person.name} is ${person.age} years' old`}</li>
+        ))}
+      </div>
+      <input
+        type="text"
+        placeholder="name"
+        value={name}
+        onChange={handleChangeName}
+      />
+      <input
+        type="text"
+        placeholder="age"
+        value={age}
+        onChange={handleChangeAge}
+      />
+      <button type="button" onClick={handleClick}>
+        Add
+      </button>
     </div>
   );
 };
