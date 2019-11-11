@@ -635,52 +635,110 @@ import { Greet } from "./components/Greet";
 // Adding to People Array.
 // using one main handleChange
 
-const App = () => {
-  return <Form />;
-};
+// const App = () => {
+//   return <Form />;
+// };
 
-const Form = () => {
-  const [people, setPeople] = useState([]);
-  const [person, setPerson] = useState({ name: "", age: "" });
-  const handleClick = () => {
-    // Spread Method
-    setPeople([...people, person]);
-  };
-  const handleChangePerson = e => {
-    setPerson({
-      ...person,
-      [e.target.name]: e.target.value
-    });
-    console.log(person);
-  };
+// const Form = () => {
+//   const [people, setPeople] = useState([]);
+//   const [person, setPerson] = useState({ name: "", age: "" });
+//   const handleClick = () => {
+//     // Spread Method
+//     setPeople([...people, person]);
+//   };
+//   const handleChangePerson = e => {
+//     setPerson({
+//       ...person,
+//       [e.target.name]: e.target.value
+//     });
+//     console.log(person);
+//   };
 
-  // people = setPeople([...people.push(person)]);
-  return (
-    <div className="App-header">
-      <div style={{ textAlign: "left" }}>
-        {people.map(person => (
-          <li>{`${person.name} is ${person.age} years' old`}</li>
-        ))}
-      </div>
-      <input
-        type="text"
-        placeholder="name"
-        name="name"
-        value={person.name}
-        onChange={handleChangePerson}
-      />
-      <input
-        type="text"
-        placeholder="age"
-        name="age"
-        value={person.age}
-        onChange={handleChangePerson}
-      />
-      <button type="button" onClick={handleClick}>
-        Add
-      </button>
-    </div>
-  );
-};
+//   // people = setPeople([...people.push(person)]);
+//   return (
+//     <div className="App-header">
+//       <div style={{ textAlign: "left" }}>
+//         {people.map(person => (
+//           <li>{`${person.name} is ${person.age} years' old`}</li>
+//         ))}
+//       </div>
+//       <input
+//         type="text"
+//         placeholder="name"
+//         name="name"
+//         value={person.name}
+//         onChange={handleChangePerson}
+//       />
+//       <input
+//         type="text"
+//         placeholder="age"
+//         name="age"
+//         value={person.age}
+//         onChange={handleChangePerson}
+//       />
+//       <button type="button" onClick={handleClick}>
+//         Add
+//       </button>
+//     </div>
+//   );
+// };
+
+// // ----------------------basic routing-----------------
+// import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// const App = () => {
+//   return (
+//     <Router>
+//       <div>
+//         <ul>
+//           <li>
+//             <Link to="/">Home</Link>
+//           </li>
+//           <li>
+//             <Link to="/about">About</Link>
+//           </li>
+//           <li>
+//             <Link to="/dashboard">Dashboard</Link>
+//           </li>
+//         </ul>
+//         <hr />
+//         <Switch>
+//           <Route exact path="/">
+//             <Home />
+//           </Route>
+//           <Route path="/about">
+//             <About />
+//           </Route>
+//           <Route path="/dashboard">
+//             <Dashboard />
+//           </Route>
+//         </Switch>
+//       </div>
+//     </Router>
+//   );
+// };
+
+// const Home = () => {
+//   return (
+//     <div>
+//       <h2>Home Page</h2>
+//     </div>
+//   );
+// };
+
+// const About = () => {
+//   return (
+//     <div>
+//       <h2>About Page</h2>
+//     </div>
+//   );
+// };
+
+// const Dashboard = () => {
+//   return (
+//     <div>
+//       <h2>Dashboard Page</h2>
+//     </div>
+//   );
+// };
 
 export default App;
