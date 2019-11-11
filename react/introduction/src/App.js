@@ -565,43 +565,93 @@ import { Greet } from "./components/Greet";
 // ----------------name and age exercise---------------
 // Adding to People Array.
 
+// const App = () => {
+//   return <Form value={{ initName: "shahriar", initAge: 25 }} />;
+// };
+
+// const Form = props => {
+//   const { initName, initAge } = props.value;
+//   const [people, setPeople] = useState([{ name: initName, age: initAge }]);
+//   const [name, setName] = useState("");
+//   const [age, setAge] = useState();
+//   const handleClick = () => {
+//     let person = {
+//       name: name,
+//       age: age
+//     };
+//     // Spread Method
+//     setPeople([...people, person]);
+
+//     // ForEach Method
+//     // let items = [];
+//     // people.forEach(person => items.push(person));
+//     // items.push(person);
+//     // setPeople(items);
+
+//     // For Of Method
+//     //   let items = [];
+//     //   for (let p of people) {
+//     //     items.push(p);
+//     //   }
+//     //   items.push(person);
+//     //   setPeople(items);
+//     //
+//   };
+//   const handleChangeName = e => {
+//     setName(e.target.value);
+//   };
+//   const handleChangeAge = e => {
+//     setAge(e.target.value);
+//   };
+
+//   // people = setPeople([...people.push(person)]);
+//   return (
+//     <div className="App-header">
+//       <div style={{ textAlign: "left" }}>
+//         {people.map(person => (
+//           <li>{`${person.name} is ${person.age} years' old`}</li>
+//         ))}
+//       </div>
+//       <input
+//         type="text"
+//         placeholder="name"
+//         value={name}
+//         onChange={handleChangeName}
+//       />
+//       <input
+//         type="text"
+//         placeholder="age"
+//         value={age}
+//         onChange={handleChangeAge}
+//       />
+//       <button type="button" onClick={handleClick}>
+//         Add
+//       </button>
+//     </div>
+//   );
+// };
+
+// ----------------person exercise (similar to above)---------------
+// Adding to People Array.
+// using one main handleChange
+
 const App = () => {
-  return <Form value={{ initName: "shahriar", initAge: 25 }} />;
+  return <Form />;
 };
 
-const Form = props => {
-  const { initName, initAge } = props.value;
-  const [people, setPeople] = useState([{ name: initName, age: initAge }]);
-  const [name, setName] = useState("");
-  const [age, setAge] = useState();
+const Form = () => {
+  const [people, setPeople] = useState([]);
+  const [person, setPerson] = useState({ name: "", age: "" });
   const handleClick = () => {
-    let person = {
-      name: name,
-      age: age
-    };
     // Spread Method
     setPeople([...people, person]);
-
-    // ForEach Method
-    // let items = [];
-    // people.forEach(person => items.push(person));
-    // items.push(person);
-    // setPeople(items);
-
-    // For Of Method
-    //   let items = [];
-    //   for (let p of people) {
-    //     items.push(p);
-    //   }
-    //   items.push(person);
-    //   setPeople(items);
-    //
   };
-  const handleChangeName = e => {
-    setName(e.target.value);
-  };
-  const handleChangeAge = e => {
-    setAge(e.target.value);
+  const handleChangePerson = e => {
+    setPerson({
+      ...person,
+      [e.target.name]: e.target.value
+    });
+    console.log(person);
   };
 
   // people = setPeople([...people.push(person)]);
@@ -615,14 +665,16 @@ const Form = props => {
       <input
         type="text"
         placeholder="name"
-        value={name}
-        onChange={handleChangeName}
+        name="name"
+        value={person.name}
+        onChange={handleChangePerson}
       />
       <input
         type="text"
         placeholder="age"
-        value={age}
-        onChange={handleChangeAge}
+        name="age"
+        value={person.age}
+        onChange={handleChangePerson}
       />
       <button type="button" onClick={handleClick}>
         Add
