@@ -4,4 +4,5 @@ export interface IPersonDto {
   dob: string;
   img: string;
   address: string;
+  fb: string;
 }

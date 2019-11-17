@@ -7,6 +7,7 @@ export interface IPerson {
   img: string;
   address: string;
   description: string;
+  url: string;
 }
 
 export class Person implements IPerson {
@@ -16,6 +17,7 @@ export class Person implements IPerson {
   img: string;
   address: string;
   description: string;
+  url: string;
   constructor(personDto: IPersonDto) {
     this.name = personDto.name;
     this.age = personDto.age;
@@ -23,5 +25,6 @@ export class Person implements IPerson {
     this.img = personDto.img;
     this.address = personDto.address;
     this.description = `${this.name} is ${this.age} years' old.`;
+    this.url = `https://www.facebook.com/${personDto.fb}`;
   }
 }
